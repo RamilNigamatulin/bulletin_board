@@ -1,0 +1,9 @@
+Django==4.2
+djangorestframework==3.15.2
+python-dotenv==1.0.1
+psycopg2-binary==2.9.10
+django-phonenumber-field==8.0.0
+phonenumbers==8.13.47
+pillow==11.0.0
+djangorestframework-simplejwt==5.3.1
+django-filter==24.3
