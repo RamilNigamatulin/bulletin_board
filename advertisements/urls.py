@@ -6,7 +6,8 @@ from advertisements.views import (AdvertisementCreateAPIView,
                                   AdvertisementListAPIView,
                                   AdvertisementRetrieveAPIView,
                                   AdvertisementUpdateAPIView, ReviewListAPIView, ReviewRetrieveAPIView,
-                                  ReviewUpdateAPIView, ReviewDestroyAPIView, ReviewCreateAPIView)
+                                  ReviewUpdateAPIView, ReviewDestroyAPIView, ReviewCreateAPIView,
+                                  ReviewListAdvertisementAPIView)
 
 app_name = AdvertisementsConfig.name
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path("reviews/<int:pk>/update/", ReviewUpdateAPIView.as_view(), name="update_review",),
     path("reviews/<int:pk>/delete/", ReviewDestroyAPIView.as_view(), name="delete_review",),
     path("reviews/create/", ReviewCreateAPIView.as_view(), name="create_review",),
+    path("reviews/advertisement/<int:advertisement_id>/", ReviewListAdvertisementAPIView.as_view(), name="list_reviews_by_advertisement",),
 ]
