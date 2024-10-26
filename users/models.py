@@ -47,6 +47,8 @@ class User(AbstractUser):
             ("ADMIN", "Администратор"),
             ("USER", "Пользователь"),
         ),
+        blank=True,
+        null=True,
     )
 
     USERNAME_FIELD = "email"
