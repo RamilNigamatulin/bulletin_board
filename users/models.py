@@ -4,7 +4,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractUser):
-    DoesNotExist = None
     username = None
 
     first_name = models.CharField(
@@ -47,6 +46,17 @@ class User(AbstractUser):
             ("ADMIN", "Администратор"),
             ("USER", "Пользователь"),
         ),
+        blank=True,
+        null=True,
+    )
+    token = models.CharField(
+        max_length=50,
+        verbose_name="Токен для восстановления пароля",
+        blank=True,
+        null=True,
+    )
+    uid = models.UUIDField(
+        verbose_name="UID для восстановления пароля",
         blank=True,
         null=True,
     )

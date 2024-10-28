@@ -1,10 +1,15 @@
-from rest_framework.generics import CreateAPIView
+import secrets
+import uuid
+
+from django.core.mail import send_mail
+from rest_framework.generics import CreateAPIView, get_object_or_404
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from users.models import User
-from users.serializers import UserSerializer, PasswordResetSerializer
+from users.serializers import UserSerializer
+from config.settings import EMAIL_HOST_USER
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -22,10 +27,37 @@ class UserCreateAPIView(CreateAPIView):
         user.save()
 
 class PasswordResetAPIView(APIView):
-    pass
+    permission_classes = (AllowAny,)
 
+    def post(self, request):
+        email = request.data.get("email")
+        user = get_object_or_404(User, email=email)
+        host = self.request.get_host()
+        uid = uuid.uuid4()
+        token = secrets.token_hex(16)
+        user.token = token
+        user.uid = uid
+        user.save()
+        url = f"http//:{host}/users/reset_password_confirm/"
+        send_mail(
+            "Восстановление пароля",
+            f"Привет! Для восстановления пароля по ссылкe: {url} и укажите новый пароль. uid={uid}, token={token}",
+            EMAIL_HOST_USER,
+            [user.email]
+        )
+        return Response({"message": "На Вашу электронную почту направлено сообщение для изменения пароля"})
 
 
 class PasswordResetConfirmAPIView(APIView):
-    pass
+    permission_classes = (AllowAny,)
 
+    def post(self, request):
+        uid = request.data.get("uid")
+        token = request.data.get("token")
+        new_password = request.data.get("new_password")
+        user = get_object_or_404(User, uid=uid, token=token)
+        user.set_password(new_password)
+        user.uid = None  # Очищение поля uid
+        user.token = None  # Очищение поля token
+        user.save()
+        return Response({"message": "Ваш пароль успешно изменен"})
