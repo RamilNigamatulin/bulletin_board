@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -143,4 +143,7 @@ EMAIL_USE_TLS = False
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = ['*'] #['<http://localhost:8000>']
+CSRF_TRUSTED_ORIGINS = ['https://test_example.com']
+CORS_ALLOW_ALL_ORIGINS = False
