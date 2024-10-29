@@ -144,6 +144,10 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-CORS_ALLOWED_ORIGINS = ['*'] #['<http://localhost:8000>']
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://test_example.com',
+]
 CSRF_TRUSTED_ORIGINS = ['https://test_example.com']
 CORS_ALLOW_ALL_ORIGINS = False
