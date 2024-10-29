@@ -7,3 +7,5 @@ phonenumbers==8.13.47
 pillow==11.0.0
 djangorestframework-simplejwt==5.3.1
 django-filter==24.3
+ipython==8.29.0
+django-cors-headers==4.5.0

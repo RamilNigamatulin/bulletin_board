@@ -38,10 +38,10 @@ class PasswordResetAPIView(APIView):
         user.token = token
         user.uid = uid
         user.save()
-        url = f"http//:{host}/users/reset_password_confirm/"
+        url = f"http://{host}/users/reset_password/confirm/{user.uid}/{user.token}/"
         send_mail(
             "Восстановление пароля",
-            f"Привет! Для восстановления пароля по ссылкe: {url} и укажите новый пароль. uid={uid}, token={token}",
+            f"Привет! Для восстановления пароля перейдите по ссылкe: {url} и укажите новый пароль.",
             EMAIL_HOST_USER,
             [user.email]
         )
@@ -51,12 +51,15 @@ class PasswordResetAPIView(APIView):
 class PasswordResetConfirmAPIView(APIView):
     permission_classes = (AllowAny,)
 
-    def post(self, request):
-        uid = request.data.get("uid")
-        token = request.data.get("token")
-        new_password = request.data.get("new_password")
+    def post(self, request, uid, token):
+        new_password_1 = request.data.get("new_password_1")
+        new_password_2 = request.data.get("new_password_2")
+
+        if new_password_1 != new_password_2:
+            return Response({"Ошибка": "Пароли не совпадают"})
+
         user = get_object_or_404(User, uid=uid, token=token)
-        user.set_password(new_password)
+        user.set_password(new_password_1)
         user.uid = None  # Очищение поля uid
         user.token = None  # Очищение поля token
         user.save()

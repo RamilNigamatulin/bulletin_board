@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "rest_framework_simplejwt",
     "django_filters",
+    "corsheaders",
 
     "users",
     "advertisements",
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -134,9 +136,11 @@ EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_SSL = True #os.getenv("EMAIL_USE_SSL")
-EMAIL_USE_TLS = False #os.getenv("EMAIL_USE_TLS")
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
 
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+CORS_ALLOW_ALL_ORIGINS = True
