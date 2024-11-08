@@ -13,11 +13,14 @@ from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(CreateAPIView):
+    """Создаем пользователя."""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):
+        """Устанавливаем роль пользователя и активируем его."""
         user = serializer.save(is_active=True)
         user.set_password(user.password)
         if user.is_superuser:
@@ -28,6 +31,8 @@ class UserCreateAPIView(CreateAPIView):
 
 
 class PasswordResetAPIView(APIView):
+    """Отправляем письмо со ссылкой для восстановления пароля."""
+
     permission_classes = (AllowAny,)
 
     def post(self, request):
@@ -54,6 +59,8 @@ class PasswordResetAPIView(APIView):
 
 
 class PasswordResetConfirmAPIView(APIView):
+    """Изменяем пароль."""
+
     permission_classes = (AllowAny,)
 
     def post(self, request, uid, token):
@@ -65,7 +72,7 @@ class PasswordResetConfirmAPIView(APIView):
 
         user = get_object_or_404(User, uid=uid, token=token)
         user.set_password(new_password_1)
-        user.uid = None  # Очищаем поле uid
-        user.token = None  # Очищаем поле token
+        user.uid = None
+        user.token = None
         user.save()
         return Response({"message": "Ваш пароль успешно изменен"})
