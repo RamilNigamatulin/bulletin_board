@@ -18,6 +18,8 @@ from advertisements.serializers import (
 
 
 class AdvertisementCreateAPIView(CreateAPIView):
+    """Создаем новое объявление."""
+
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
 
@@ -29,6 +31,8 @@ class AdvertisementCreateAPIView(CreateAPIView):
 
 
 class AdvertisementListAPIView(ListAPIView):
+    """Выводим список всех объявлений."""
+
     queryset = Advertisement.objects.all().order_by("-created_at")
     serializer_class = AdvertisementSerializer
     filterset_fields = ("title",)
@@ -37,41 +41,55 @@ class AdvertisementListAPIView(ListAPIView):
 
 
 class AdvertisementUpdateAPIView(UpdateAPIView):
+    """Редактируем объявление."""
+
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
     permission_classes = (isAuthorOrSuperuser,)
 
 
 class AdvertisementRetrieveAPIView(RetrieveAPIView):
+    """Выводим одно объявление."""
+
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementDetailSerializer
 
 
 class AdvertisementDestroyAPIView(DestroyAPIView):
+    """Удаляем объявление."""
+
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
     permission_classes = (isAuthorOrSuperuser,)
 
 
 class ReviewListAPIView(ListAPIView):
+    """Выодим список отзывов с фильтрацией по дате создания."""
+
     queryset = Review.objects.all().order_by("-created_at")
     serializer_class = ReviewSerializer
     pagination_class = AdvertisementPaginator
 
 
 class ReviewDestroyAPIView(DestroyAPIView):
+    """Удаляем отзыв."""
+
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = (isAuthorOrSuperuser,)
 
 
 class ReviewUpdateAPIView(UpdateAPIView):
+    """Редактируем отзыв."""
+
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = (isAuthorOrSuperuser,)
 
 
 class ReviewCreateAPIView(CreateAPIView):
+    """Создаем новый отзыв."""
+
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
@@ -83,12 +101,14 @@ class ReviewCreateAPIView(CreateAPIView):
 
 
 class ReviewRetrieveAPIView(RetrieveAPIView):
+    """Выводим один отзыв."""
+
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
 
 class ReviewListAdvertisementAPIView(ListAPIView):
-    """Выводит все отзывы выбранного объявления."""
+    """Выводим все отзывы выбранного объявления."""
 
     serializer_class = ReviewSerializer
     pagination_class = AdvertisementPaginator
