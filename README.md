@@ -218,3 +218,4 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ```
     GET /advertisements?title=example/
     ``` 
+    
