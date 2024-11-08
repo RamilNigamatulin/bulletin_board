@@ -29,31 +29,63 @@ Bulletin doard  — это Backend-часть для сайта объявлен
 ## Установка
 1. Клонируйте репозиторий: https://github.com/RamilNigamatulin/bulletin_board.git
 2. Создайте виртуальное окружение и активируйте его:
-- python -m venv venv
-- source venv/bin/activate
+    ```
+    python -m venv venv
+    ```
+    ```
+    source venv/bin/activate
+    ```
 3. Переименуйте файл ".env.sample" в ".env" и заполните его.
 Для генерации SECRET_KEY введите в консоль команду: 
-- python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+    ```
+    python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+    ```
 4. Установите зависимости командой: 
-- pip install -r requirements.txt
+    ```
+    pip install -r requirements.txt
+    ```
 5. Запустите проект:
-- python manage.py runserver
+    ```
+    python manage.py runserver
+    ```
 6. Для тестирования проекта возможно использования подготовленных фикстур, для их загрузки введите команду:
-- python manage.py loaddata fixtures/general.json (или по отдельности: python manage.py loaddata fixtures/advertisement.json; python manage.py loaddata fixtures/user.json )
+    ```
+    python manage.py loaddata fixtures/general.json
+    ```
+    или по отдельности: 
+    ```
+    python manage.py loaddata fixtures/advertisement.json
+    ```
+    ```
+    python manage.py loaddata fixtures/user.json
+    ```
 - Пароль для всех пользователей 123qwe.
 7. Для использования чистой базы и настройки администратора, внесите соответствующие изменения в файл "csu.py" (логин и пароль администратора) и введите команду: 
-- python manage.py csu
+    ```
+    python manage.py csu
+    ```
 
 ## Проект подготовлен для упаковки в Docker
 
 Для упаковки и пользования проектом в Docker внесите изменения в настройки файла ".env", а именно "POSTGRES_HOST=db", после чего введите команду:
-- docker-compose up -d --build
+```
+docker-compose up -d --build
+```
 
 Откройте приложение в браузере:
 - http://localhost:8000/ или http://0.0.0.0:8000/
 
 Для загрузки подготовленных фикстур в проект введите команду:
-- docker-compose exec app python manage.py loaddata fixtures/general.json (либо по отдельности каждую фикстуру: docker-compose exec app python manage.py loaddata fixtures/advertisement.json; docker-compose exec app python manage.py loaddata fixtures/user.json)
+```
+docker-compose exec app python manage.py loaddata fixtures/general.json
+```
+либо по отдельности каждую фикстуру: 
+```
+docker-compose exec app python manage.py loaddata fixtures/advertisement.json
+```
+```
+docker-compose exec app python manage.py loaddata fixtures/user.json
+```
 
 
 ## Эндпоинты
@@ -186,3 +218,4 @@ Bulletin doard  — это Backend-часть для сайта объявлен
     ```
     GET /advertisements?title=example/
     ``` 
+    
