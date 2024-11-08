@@ -1,0 +1,17 @@
+Django==4.2
+djangorestframework==3.15.2
+python-dotenv==1.0.1
+psycopg2-binary==2.9.10
+django-phonenumber-field==8.0.0
+phonenumbers==8.13.47
+pillow==11.0.0
+djangorestframework-simplejwt==5.3.1
+django-filter==24.3
+ipython==8.29.0
+django-cors-headers==4.5.0
+drf-yasg==1.21.8
+pytest==8.3.3
+pytest-cov==5.0.0
+pytest-django==4.9.0
+flake8==7.1.1
+black==24.10.0

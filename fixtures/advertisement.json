@@ -1,0 +1,102 @@
+[
+  {
+    "model": "advertisements.advertisement",
+    "pk": 6,
+    "fields": {
+      "title": "Кот",
+      "price": 130,
+      "description": null,
+      "author": 1,
+      "created_at": "2024-10-23T12:49:18.015Z",
+      "image": ""
+    }
+  },
+  {
+    "model": "advertisements.advertisement",
+    "pk": 7,
+    "fields": {
+      "title": "Ящерица",
+      "price": 100,
+      "description": null,
+      "author": 1,
+      "created_at": "2024-10-23T12:49:34.301Z",
+      "image": ""
+    }
+  },
+  {
+    "model": "advertisements.advertisement",
+    "pk": 8,
+    "fields": {
+      "title": "Автомобиль",
+      "price": 2000000,
+      "description": null,
+      "author": 1,
+      "created_at": "2024-10-23T12:49:57.858Z",
+      "image": ""
+    }
+  },
+  {
+    "model": "advertisements.advertisement",
+    "pk": 9,
+    "fields": {
+      "title": "Футбольный мяч",
+      "price": 102,
+      "description": null,
+      "author": 2,
+      "created_at": "2024-10-25T02:33:28.658Z",
+      "image": ""
+    }
+  },
+  {
+    "model": "advertisements.advertisement",
+    "pk": 73,
+    "fields": {
+      "title": "Томат парниковый",
+      "price": 123,
+      "description": null,
+      "author": 5,
+      "created_at": "2024-11-06T15:03:35.334Z",
+      "image": ""
+    }
+  },
+  {
+    "model": "advertisements.review",
+    "pk": 4,
+    "fields": {
+      "text": "Норм",
+      "author": 1,
+      "created_at": "2024-10-23T13:03:37.764Z",
+      "advertisement": 6
+    }
+  },
+  {
+    "model": "advertisements.review",
+    "pk": 5,
+    "fields": {
+      "text": "Не понравился",
+      "author": 1,
+      "created_at": "2024-10-23T13:03:58.773Z",
+      "advertisement": 6
+    }
+  },
+  {
+    "model": "advertisements.review",
+    "pk": 6,
+    "fields": {
+      "text": "Все понравилось",
+      "author": 1,
+      "created_at": "2024-10-24T04:52:23.698Z",
+      "advertisement": 7
+    }
+  },
+  {
+    "model": "advertisements.review",
+    "pk": 8,
+    "fields": {
+      "text": "Тест отзыв",
+      "author": 5,
+      "created_at": "2024-11-07T17:20:17.209Z",
+      "advertisement": 7
+    }
+  }
+]
