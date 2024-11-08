@@ -2,7 +2,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_URL
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -24,14 +23,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "phonenumber_field",
     "rest_framework_simplejwt",
     "django_filters",
     "corsheaders",
     "drf_yasg",
-
     "users",
     "advertisements",
 ]
@@ -78,6 +75,13 @@ DATABASES = {
         "PASSWORD": os.getenv("PASSWORD"),
         "HOST": os.getenv("HOST"),
         "PORT": os.getenv("PORT"),
+        "TEST": {
+            "NAME": os.getenv("NAME"),
+            "USER": os.getenv("USER"),
+            "PASSWORD": os.getenv("PASSWORD"),
+            "HOST": os.getenv("HOST"),
+            "PORT": os.getenv("PORT"),
+        },
     }
 }
 
@@ -120,12 +124,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_FILTER_BACKENDS": [
-        "django_filters.rest_framework.DjangoFilterBackend"
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-       'rest_framework.permissions.IsAuthenticated',
-    ]
 }
 
 SIMPLE_JWT = {
@@ -146,9 +148,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'https://test_example.com',
+    "http://127.0.0.1:8000",
+    "https://test_example.com",
 ]
-CSRF_TRUSTED_ORIGINS = ['https://test_example.com']
+CSRF_TRUSTED_ORIGINS = ["https://test_example.com"]
 CORS_ALLOW_ALL_ORIGINS = False

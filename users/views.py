@@ -7,9 +7,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from config.settings import EMAIL_HOST_USER
 from users.models import User
 from users.serializers import UserSerializer
-from config.settings import EMAIL_HOST_USER
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -25,6 +25,7 @@ class UserCreateAPIView(CreateAPIView):
         else:
             user.user_role = "USER"
         user.save()
+
 
 class PasswordResetAPIView(APIView):
     permission_classes = (AllowAny,)
@@ -43,9 +44,13 @@ class PasswordResetAPIView(APIView):
             "Восстановление пароля",
             f"Привет! Для восстановления пароля перейдите по ссылкe: {url} и укажите новый пароль.",
             EMAIL_HOST_USER,
-            [user.email]
+            [user.email],
         )
-        return Response({"message": "На Вашу электронную почту направлено сообщение для изменения пароля"})
+        return Response(
+            {
+                "message": "На Вашу электронную почту направлено сообщение для изменения пароля"
+            }
+        )
 
 
 class PasswordResetConfirmAPIView(APIView):
@@ -60,7 +65,7 @@ class PasswordResetConfirmAPIView(APIView):
 
         user = get_object_or_404(User, uid=uid, token=token)
         user.set_password(new_password_1)
-        user.uid = None  # Очищение поля uid
-        user.token = None  # Очищение поля token
+        user.uid = None  # Очищаем поле uid
+        user.token = None  # Очищаем поле token
         user.save()
         return Response({"message": "Ваш пароль успешно изменен"})

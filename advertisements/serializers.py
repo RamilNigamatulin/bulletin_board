@@ -12,6 +12,7 @@ class AdvertisementSerializer(ModelSerializer):
 
 class AdvertisementDetailSerializer(ModelSerializer):
     """Добавляет новую строку в сериализатор для подсчета количества отзывов."""
+
     count_review = SerializerMethodField()
 
     def get_count_review(self, advertisement):
@@ -19,7 +20,14 @@ class AdvertisementDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Advertisement
-        fields = ("title", "price", "description", "author", "created_at", "count_review",)
+        fields = (
+            "title",
+            "price",
+            "description",
+            "author",
+            "created_at",
+            "count_review",
+        )
 
 
 class ReviewSerializer(ModelSerializer):
