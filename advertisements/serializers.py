@@ -21,6 +21,7 @@ class AdvertisementDetailSerializer(ModelSerializer):
     class Meta:
         model = Advertisement
         fields = (
+            "id",
             "title",
             "price",
             "description",
