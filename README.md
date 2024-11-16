@@ -97,8 +97,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ``` 
     ```
     {
-        "email": "user@example.ru",
-        "password": "example"
+      "email": "user@example.ru",
+      "password": "example"
     }
     ```
   - Получение токена
@@ -107,8 +107,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ``` 
     ```
     {
-        "email": "user@example.ru",
-        "password": "example"
+      "email": "user@example.ru",
+      "password": "example"
     }
     ```
   - Обновление токена
@@ -117,8 +117,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ```
     ```
     {
-        "email": "user@example.ru",
-        "password": "example"
+      "email": "user@example.ru",
+      "password": "example"
     }
     ```
   - Восстановление пароля
@@ -127,7 +127,7 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ```
     ```
     {
-        "email": "user@example.ru"
+      "email": "user@example.ru"
     }
     ```
   - Подтверждение восстановления пароля
@@ -136,8 +136,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ``` 
     ```
     {
-        "new_password_1": "new_example",
-        "new_password_2": "new_example"
+      "new_password_1": "new_example",
+      "new_password_2": "new_example"
     }
     ```
 
@@ -152,8 +152,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ``` 
     ```
     {
-        "title": "example",
-        "price": 123
+      "title": "example",
+      "price": 123
     }
     ```
   - Детальная информация об объявлении
@@ -166,8 +166,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ```
     ```
     {
-        "title": "example",
-        "price": 123
+      "title": "example",
+      "price": 123
     }
     ```
   - Удаление объявления
@@ -186,8 +186,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ``` 
     ```
     {
-        "text": "example",
-        "advertisement": "advertisement.id"
+      "text": "example",
+      "advertisement": "advertisement.id"
     }
     ```
   - Детальная информация об отзыве
@@ -200,8 +200,8 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
     ```
     ```
     {
-        "text": "example",
-        "advertisement": "advertisement.id"
+      "text": "example",
+      "advertisement": "advertisement.id"
     }
     ```
   - Удаление объявления
@@ -216,6 +216,14 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
 - **Поиск**:
   - Поиск объявлений по названию 
     ```
-    GET /advertisements?title=example
+    GET /advertisements?search=example
     ``` 
     
+- **Тестирование**:
+    
+  ```
+  coverage run --source='.' manage.py test
+  ```
+  ```
+  coverage report -m
+  ```

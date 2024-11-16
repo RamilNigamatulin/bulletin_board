@@ -6,6 +6,7 @@ from rest_framework.generics import (
     UpdateAPIView,
 )
 from rest_framework.permissions import AllowAny
+from rest_framework import filters
 
 from advertisements.models import Advertisement, Review
 from advertisements.paginators import AdvertisementPaginator
@@ -35,7 +36,9 @@ class AdvertisementListAPIView(ListAPIView):
 
     queryset = Advertisement.objects.all().order_by("-created_at")
     serializer_class = AdvertisementSerializer
-    filterset_fields = ("title",)
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title']
+
     pagination_class = AdvertisementPaginator
     permission_classes = (AllowAny,)
 
