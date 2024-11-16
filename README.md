@@ -216,6 +216,6 @@ docker-compose exec app python manage.py loaddata fixtures/user.json
 - **Поиск**:
   - Поиск объявлений по названию 
     ```
-    GET /advertisements?title=example/
+    GET /advertisements?title=example
     ``` 
     
