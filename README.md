@@ -1,6 +1,6 @@
 ## Описание проекта
 
-Bulletin doard  — это Backend-часть для сайта объявлений.
+Bulletin board  — это Backend-часть для сайта объявлений.
 
 Он разработан с использованием Django и Django REST Framework. 
 
